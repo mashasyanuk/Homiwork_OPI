@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include <iomanip>
 using namespace std;
 
@@ -78,15 +79,20 @@ public:
 			}
             if (flag){
                cout << "Ряд " << i << " симметричный " << endl; 
-
             }
 
 		}
 	}
 
 	void printSumInTriangle(){
-
-	}
+        int sum=0;
+        for (int i = 0; i < m_size; i++) {
+            for (int j = m_size; j >= 0; j--) {
+                sum += m_matrix[i][j];
+            }
+        }
+        cout << "total sum:  "<< sum << endl;
+    }
 
 private:
 	int m_size;
@@ -94,8 +100,8 @@ private:
 	int m_startRange;
 	int m_endRange;
 
-	int** m_matrix = nullptr;
-	const int M_MMS = 100; // M_MAXMATRIXSIZE
+	int** m_matrix;
+	const int M_MMS=100; // M_MAXMATRIXSIZE
 };
 	
 int InputMenu(){
@@ -117,14 +123,18 @@ void MenuLoop(Matrix& Mat) {
 		menuItem = InputMenu();
 		switch(menuItem){
 			case 1:
-				Mat.printMultAfterMax();
+				Mat.printMatrix();
 				break;
 			case 2:
-				Mat.CheckSimetry();
+				Mat.printMultAfterMax();
 				break;
 			case 3:
-				Mat.printSumInTriangle();
+				Mat.CheckSimetry();
 				break;
+            case 4:
+                Mat.printMatrix();
+                Mat.printSumInTriangle();
+                break;
 			case 0:
 				break;
 			default:
