@@ -41,7 +41,30 @@ public:
 	}
 
 	void printMultAfterMax() {
+
+        for (int i = 0; i < m_size; i++) {
+            int max_=0;
+            int needed_index=0;
+
+			for (int j = 0; j < m_size; j++) {
+                if (m_matrix[i][j]>max_){
+                    max_=m_matrix[i][j];
+                    needed_index=j;
+                }
+			}
+            int result=Multipultion(i, needed_index);
+            cout << "В ряду " << i << "произведение после максимума: " << result << endl;
+
+		}
 	}
+
+    int Multipultion(int index_i, int index_j){
+        int total=1;
+        for(int j=(index_j+1); j<m_size; j++){
+            total*=m_matrix[index_i][j];
+        }
+        return total;
+    }
 	
 	void isPositiveRow() {
 	}
