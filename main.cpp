@@ -66,10 +66,26 @@ public:
         return total;
     }
 	
-	void isPositiveRow() {
+	void CheckSimetry(){
+        for (int i = 0; i < m_size; i++) {
+            bool flag = true;
+			for (int j = 0; j < (m_size/2); j++) {
+				if(m_matrix[i][j]!=m_matrix[i][m_size-j]){
+                    cout << "Ряд " << i << " не симметричный " << endl; 
+                    flag=false;
+                }
+                    
+			}
+            if (flag){
+               cout << "Ряд " << i << " симметричный " << endl; 
+
+            }
+
+		}
 	}
 
-	void getTriangleSum() {
+	void printSumInTriangle(){
+
 	}
 
 private:
@@ -101,16 +117,13 @@ void MenuLoop(Matrix& Mat) {
 		menuItem = InputMenu();
 		switch(menuItem){
 			case 1:
-				Mat.printMatrix();
-				break;
-			case 2:
-				Mat.isPositiveRow();
-				break;
-			case 3:
 				Mat.printMultAfterMax();
 				break;
-			case 4:
-				Mat.getTriangleSum();
+			case 2:
+				Mat.CheckSimetry();
+				break;
+			case 3:
+				Mat.printSumInTriangle();
 				break;
 			case 0:
 				break;
