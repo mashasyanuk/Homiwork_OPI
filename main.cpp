@@ -59,3 +59,53 @@ private:
 	const int M_MMS = 100; // M_MAXMATRIXSIZE
 };
 	
+int InputMenu(){
+    cout << endl;
+    cout << "1- Для вывода матрицы" << endl;
+    cout << "2- Найти поизведение элементов, расположенный после максимального в строке" << endl;
+    cout << "3- Поверка на симметричность строк относительно среднего элемента" << endl;
+    cout << "4- Вычислить сумму элеметров в нижнем треугольнике" << endl;
+    cout << "0- Выход" << endl;
+    int menuNumber = 0;
+    cin >> menuNumber;
+    return menuNumber;
+}
+
+void MenuLoop(Matrix& Mat) {
+	int menuItem = -1;
+	int left = 0, right = 0;
+	while (menuItem != 0) {
+		menuItem = InputMenu();
+		switch(menuItem){
+			case 1:
+				Mat.printMatrix();
+				break;
+			case 2:
+				Mat.isPositiveRow();
+				break;
+			case 3:
+				Mat.printMultAfterMax();
+				break;
+			case 4:
+				Mat.getTriangleSum();
+				break;
+			case 0:
+				break;
+			default:
+				cout << "Неправильно выбрана команда, повторите ввод" << endl;
+				break;
+		}
+	}
+}
+
+int main() {
+	#pragma region init
+	srand(unsigned(time(NULL)));
+	Matrix Mat(16, -9, 9);
+	Mat.fillMatrix();
+	#pragma endregion init
+   	
+	MenuLoop(Mat);
+
+	return 0;
+}
